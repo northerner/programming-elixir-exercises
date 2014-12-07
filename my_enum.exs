@@ -19,4 +19,12 @@ defmodule MyEnum do
     end
   end
   def filter([], _, new_list), do: new_list
+
+  def split(list, count), do: split(list, count, [])
+  defp split(remaining_list, 0, new_list), do: {new_list, remaining_list}
+  defp split([h|t], count, new_list), do: split(t, count-1, [h|new_list])
+
+  def take(list, count), do: take(list, count, [])
+  defp take(_, 0, new_list), do: new_list
+  defp take([h|t], count, new_list), do: take(t, count-1, [h|new_list])
 end
